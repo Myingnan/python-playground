@@ -33,9 +33,16 @@ print(x, y)
 def quadratic(a, b, c):
     if (not isinstance(a, (int, float))) or (not isinstance(b, (int, float))) or (not isinstance(c, (int, float))):
         raise TypeError("Bad Type!")
-    val1 = (-b + math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
-    val2 = (-b - math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
-    return val1, val2
+    temp = b ** 2 - 4 * a * c
+    if temp < 0:
+        return "No result"
+    elif temp == 0:
+        return -b + math.sqrt(temp) / (2 * a)
+    else:
+        val1 = (-b + math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
+        val2 = (-b - math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
+        return val1, val2
 
 print('quadratic(2, 3, 1) =', quadratic(2, 3, 1))
 print('quadratic(1, 3, -4) =', quadratic(1, 3, -4))
+print(quadratic(0, 0, 0))
